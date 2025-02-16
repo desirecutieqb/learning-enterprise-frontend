@@ -1,12 +1,12 @@
 import type { Metadata } from "next";
-import {DM_Sans} from "next/font/google";
+import { DM_Sans } from "next/font/google";
 import "./globals.css";
 import Providers from "./providers";
-const dmSans = DM_Sans ({
+const dmSans = DM_Sans({
   subsets: ["latin"],
   display: "swap",
-  variable: "--font-dm-sans"
-})
+  variable: "--font-dm-sans",
+});
 
 export const metadata: Metadata = {
   title: "Create Next App",
@@ -20,13 +20,10 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="en">
-      <body
-        className={`${dmSans.className}`}
-      >
+      <body className={`${dmSans.className}`}>
         <Providers>
-        {children}
+          <div className="root-layout">{children}</div>
         </Providers>
-        
       </body>
     </html>
   );
