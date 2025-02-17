@@ -27,12 +27,10 @@ export default function DashboardLayout({
         <AppSidebar />
         <div className="dashboard__content">
           {/* chapter sidebar will go  */}
-          <div
-            className={cn("dashboard__main")}
-            style={{ height: "100vh" }}
-          ></div>
-          <Navbar />
-          <main className="dashboard__body">{children}</main>
+          <div className={cn("dashboard__main")} style={{ height: "100vh" }}>
+            <Navbar />
+            <main className="dashboard__body">{children}</main>
+          </div>
         </div>
       </div>
     </SidebarProvider>
