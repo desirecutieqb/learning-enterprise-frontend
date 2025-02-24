@@ -1,4 +1,4 @@
-"use client"
+"use client";
 import Loading from "@/components/Loading";
 import WizardStepper from "@/components/WizardStepper";
 import { useCheckoutNavigation } from "@/hooks/useCheckoutNavigation";
@@ -6,10 +6,11 @@ import { useUser } from "@clerk/nextjs";
 import React from "react";
 import CheckoutDetailsPage from "./details";
 import PaymentPage from "./payment";
+import CompletionPage from "./completion";
 
 const CheckoutWizard = () => {
   const { isLoaded } = useUser();
-  const {checkoutStep} = useCheckoutNavigation();
+  const { checkoutStep } = useCheckoutNavigation();
   if (!isLoaded) return <Loading />;
 
   const renderStep = () => {
@@ -19,17 +20,17 @@ const CheckoutWizard = () => {
       case 2:
         return <PaymentPage />;
       case 3:
-        return "completion page";
+        return <CompletionPage />;
       default:
-        return "Checkout details page";
+        return <CheckoutDetailsPage />;
     }
   };
-  return <div className="checkout">
-    <WizardStepper currentStep={checkoutStep} />
-    <div className="checkout__content">
-        {renderStep()}  
+  return (
+    <div className="checkout">
+      <WizardStepper currentStep={checkoutStep} />
+      <div className="checkout__content">{renderStep()}</div>
     </div>
-  </div>;
+  );
 };
 
 export default CheckoutWizard;

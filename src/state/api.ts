@@ -1,3 +1,5 @@
+/* eslint-disable @typescript-eslint/no-unused-vars */
+/* eslint-disable @typescript-eslint/no-explicit-any */
 import { createApi, fetchBaseQuery } from "@reduxjs/toolkit/query/react";
 import { BaseQueryApi, FetchArgs } from "@reduxjs/toolkit/query";
 import { User } from "@clerk/nextjs/server";
@@ -84,10 +86,10 @@ export const api = createApi({
       providesTags: (result, error, id) => [{ type: "Courses", id }],
     }),
 
-    createStripePaymentIntent:build.mutation<
-    {clientSecret: string},
-     {amount: number}
-     >({
+    createStripePaymentIntent: build.mutation<
+      { clientSecret: string },
+      { amount: number }
+    >({
       query: ({ amount }) => ({
         url: `/transactions/stripe/payment-intent`,
         method: "POST",
@@ -95,14 +97,19 @@ export const api = createApi({
       }),
     }),
     createTransaction: build.mutation<Transaction, Partial<Transaction>>({
-      query:(transaction) => ({
+      query: (transaction) => ({
         url: "transactions",
         method: "POST",
         body: transaction,
-      })
-    })
+      }),
+    }),
   }),
 });
 
-export const { useUpdateUserMutation, useGetCoursesQuery, useGetCourseQuery , useCreateStripePaymentIntentMutation , useCreateTransactionMutation } =
-  api;
+export const {
+  useUpdateUserMutation,
+  useGetCoursesQuery,
+  useGetCourseQuery,
+  useCreateStripePaymentIntentMutation,
+  useCreateTransactionMutation,
+} = api;
