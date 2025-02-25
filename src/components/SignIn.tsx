@@ -5,7 +5,7 @@ import { dark } from "@clerk/themes";
 import { useSearchParams } from "next/navigation";
 const SignInComponent = () => {
   const searchParams = useSearchParams();
-  const { user } = useUser;
+  const { user } = useUser();
   const isCheckoutPage = searchParams.get("showSignUp") !== null;
   const courseId = searchParams.get("id");
 

@@ -16,13 +16,12 @@ export default function DashboardLayout({
   children: React.ReactNode;
 }) {
   const pathname = usePathname();
-  const [courseId, setCourseId] = useState<Course | null>(null);
+  const [courseId, setCourseId] = useState<string | null>(null);
   const { user, isLoaded } = useUser();
   const isCoursePage = /^\/user\/courses\/[^\/]+(?:\/chapters\/[^\/]+)?$/.test(
     pathname
   );
   
-  //handle use effect isCoursePage
   useEffect(() => {
     if (isCoursePage) {
       const match = pathname.match(/\/user\/courses\/([^\/]+)/);
