@@ -1,4 +1,5 @@
 "use client";
+
 import Header from "@/components/Header";
 import Loading from "@/components/Loading";
 import TeacherCourseCard from "@/components/TeacherCourseCard";
@@ -21,13 +22,16 @@ const Courses = () => {
     isLoading,
     isError,
   } = useGetCoursesQuery({ category: "all" });
+
   const [createCourse] = useCreateCourseMutation();
   const [deleteCourse] = useDeleteCourseMutation();
+
   const [searchTerm, setSearchTerm] = useState("");
   const [selectedCategory, setSelectedCategory] = useState("all");
 
   const filteredCourses = useMemo(() => {
     if (!courses) return [];
+
     return courses.filter((course) => {
       const matchesSearch = course.title
         .toLowerCase()
@@ -39,25 +43,31 @@ const Courses = () => {
   }, [courses, searchTerm, selectedCategory]);
 
   const handleEdit = (course: Course) => {
-    router.push(`/teacher/courses/${course.courseId}`);
+    router.push(`/teacher/courses/${course.courseId}`, {
+      scroll: false,
+    });
   };
 
   const handleDelete = async (course: Course) => {
-    if (window.confirm("Are you really sure you want to delete this course")) {
+    if (window.confirm("Are you sure you want to delete this course?")) {
       await deleteCourse(course.courseId).unwrap();
     }
   };
 
-  const handleCreate = async () => {
+  const handleCreateCourse = async () => {
     if (!user) return;
+
     const result = await createCourse({
       teacherId: user.id,
-      teacherName: user.fullName || "Unknown teacher",
+      teacherName: user.fullName || "Unknown Teacher",
     }).unwrap();
+    router.push(`/teacher/courses/${result.courseId}`, {
+      scroll: false,
+    });
   };
 
   if (isLoading) return <Loading />;
-  if (isError || !courses) return <div className="">Error loading courses</div>;
+  if (isError || !courses) return <div>Error loading courses.</div>;
 
   return (
     <div className="teacher-courses">
@@ -65,7 +75,10 @@ const Courses = () => {
         title="Courses"
         subtitle="Browse your courses"
         rightElement={
-          <Button onClick={handleCreate} className="teacher-courses__header">
+          <Button
+            onClick={handleCreateCourse}
+            className="teacher-courses__header"
+          >
             Create Course
           </Button>
         }
