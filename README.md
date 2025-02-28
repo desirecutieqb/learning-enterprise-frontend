@@ -1,22 +1,19 @@
-# 🚀 Learning Management System - Backend
+# 🚀 Learning Management System - Frontend
 
-This repository contains the **backend** for the Learning Management System (LMS), a **scalable** and **serverless** application built with AWS services. The backend provides APIs for user authentication, course management, payments, and content delivery.
+This repository contains the **frontend** of the Learning Management System (LMS), built with **Next.js** for a seamless and scalable user experience. The application allows users to browse, enroll in, and complete courses while supporting secure authentication and payments.
 
 ## 🛠 Tech Stack
-- **Backend Framework:** Node.js + Express.js
+- **Framework:** Next.js (React + TypeScript)
+- **State Management:** Redux Toolkit
+- **UI & Styling:** Tailwind CSS, Shadcn, Framer Motion
+- **Forms & Validation:** React Hook Form, Zod
 - **Authentication:** Clerk
-- **Database:** AWS DynamoDB (NoSQL)
-- **Infrastructure:**
-  - AWS Lambda (Dockerized)
-  - API Gateway
-  - AWS S3 (File Storage)
-  - CloudFront (CDN)
 - **Payments:** Stripe
-- **Deployment:** AWS ECR + AWS Lambda
+- **Hosting & Deployment:** Vercel
 
 ## 📌 Features
-✅ **User Authentication & Authorization** (Clerk)  
-✅ **Course Management** (CRUD operations for courses, lessons)  
-✅ **File Uploads & Streaming** (AWS S3 + CloudFront)  
+✅ **User Authentication & Role Management** (Clerk)  
+✅ **Course Browsing & Enrollment**  
+✅ **Dynamic UI Animations** (Framer Motion)  
 ✅ **Secure Payments & Subscription Handling** (Stripe)  
-✅ **Scalable & Serverless Deployment** (AWS Lambda + API Gateway)  
+✅ **Modern & Responsive UI** (Shadcn + Tailwind CSS)  
